@@ -1,0 +1,1 @@
+c :\Users\Not\OneDrive\Imagens\Capturas de tela\Captura de tela_20241202_230743.png
