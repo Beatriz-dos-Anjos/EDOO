@@ -7,4 +7,6 @@ class Verdura : public baseClass
 {
 public:
     float calcularValorEstoque() override;
+
+    Verdura(string newName, float newPrice, int newQuantity);
 }

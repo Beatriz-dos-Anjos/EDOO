@@ -12,7 +12,8 @@ private:
     int quantity;
 
 public:
-    virtual float calcularValorEstoque(float price, int quantity) = 0;
+    virtual float calcularValorEstoque() const = 0;             // método polimórfico
+    baseClass(string newName, float newPrice, int newQuantity); // construtor
 
     // getters and setters
     string getName();

@@ -32,3 +32,5 @@ void baseClass::setQuantity(int newQuantity)
 {
     quantity = newQuantity;
 }
+
+baseClass::baseClass(string newName, float newPrice, int newQuantity) : price(newPrice), name(newName), quantity(newQuantity) {} //constructor

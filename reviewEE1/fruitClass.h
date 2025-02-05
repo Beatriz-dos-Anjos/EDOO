@@ -7,4 +7,7 @@ class Fruit : public baseClass
 {
 public:
     float calcularValorEstoque() override;
+
+    //construtor
+    Fruit(string newName, float newPrice, int newQuantity);
 }
