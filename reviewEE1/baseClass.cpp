@@ -1,19 +1,16 @@
-#include <iostream>
-#include "/home/beatrizanjos/EDOO/reviewEE1/baseClass.h"
-
-// implementação de getters and setters
+#include "baseClass.h"
 
 string baseClass::getName()
 {
     return name;
 }
 
-float baseClass::getPrice()
+float baseClass::getPrice() const
 {
     return price;
 }
 
-int baseClass::getQuantity()
+int baseClass::getQuantity() const
 {
     return quantity;
 }
@@ -33,4 +30,5 @@ void baseClass::setQuantity(int newQuantity)
     quantity = newQuantity;
 }
 
-baseClass::baseClass(string newName, float newPrice, int newQuantity) : price(newPrice), name(newName), quantity(newQuantity) {} //constructor
+baseClass::baseClass(string newName, float newPrice, int newQuantity)
+    : name(newName), price(newPrice), quantity(newQuantity) {}

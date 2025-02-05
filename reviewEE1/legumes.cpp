@@ -1,12 +1,9 @@
-#include <iostream>
-#include "/home/beatrizanjos/EDOO/reviewEE1/legumes.h"
-#include "/home/beatrizanjos/EDOO/reviewEE1/baseClass.h"
+#include "legumes.h"
 
-#include <string>
-float Legume::calcularValorEstoque()
+float Legume::calcularValorEstoque() const
 {
-    float value = getPrice() * getQuantity();
-    return value;
+    return getPrice() * getQuantity();
 }
 
-Legume::Legume(string newName, float newPrice, int newQuantity) :baseClass(newName, newPrice, newQuantity){} //constructor
+Legume::Legume(string newName, float newPrice, int newQuantity)
+    : baseClass(newName, newPrice, newQuantity) {}

@@ -1,13 +1,13 @@
 #ifndef _FRUIT_
 #define _FRUIT_
 
-#include "/home/beatrizanjos/EDOO/reviewEE1/baseClass.h"
+#include "baseClass.h"
 
 class Fruit : public baseClass
 {
 public:
-    float calcularValorEstoque() override;
-
-    //construtor
+    float calcularValorEstoque() const override;
     Fruit(string newName, float newPrice, int newQuantity);
-}
+};
+
+#endif

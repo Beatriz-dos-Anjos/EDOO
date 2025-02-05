@@ -1,27 +1,29 @@
-#ifndef _BaseClass_
-#define _BaseClass_
+#ifndef _BASECLASS_
+#define _BASECLASS_
 
 #include <string>
+
 using namespace std;
+
 class baseClass
 {
-
 private:
     string name;
     float price;
     int quantity;
 
 public:
-    virtual float calcularValorEstoque() const = 0;             // método polimórfico
-    baseClass(string newName, float newPrice, int newQuantity); // construtor
+    virtual float calcularValorEstoque() const = 0;             // Método polimórfico
+    baseClass(string newName, float newPrice, int newQuantity); // Construtor
 
-    // getters and setters
+    // Getters e Setters
     string getName();
-    float getPrice();
-    int getQuantity();
+    float getPrice() const;
+    int getQuantity() const;
 
     void setName(string newName);
     void setPrice(float newPrice);
     void setQuantity(int newQuantity);
 };
+
 #endif

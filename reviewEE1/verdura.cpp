@@ -1,12 +1,9 @@
-#include <iostream>
-#include "/home/beatrizanjos/EDOO/reviewEE1/verdura.h"
-#include "/home/beatrizanjos/EDOO/reviewEE1/baseClass.h"
+#include "verdura.h"
 
-#include <string>
-float Verdura::calcularValorEstoque()
+float Verdura::calcularValorEstoque() const
 {
-    float value = getPrice() * getQuantity();
-    return value * 0.95;
+    return getPrice() * getQuantity();
 }
 
-Verdura::Verdura(string newName, float newPrice, int newQuantity) : baseClass(newName, newPrice, newQuantity) {} // constructor
+Verdura::Verdura(string newName, float newPrice, int newQuantity)
+    : baseClass(newName, newPrice, newQuantity) {}

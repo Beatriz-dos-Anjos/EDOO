@@ -1,12 +1,13 @@
 #ifndef _VERDURA_
 #define _VERDURA_
 
-#include "/home/beatrizanjos/EDOO/reviewEE1/baseClass.h"
+#include "baseClass.h"
 
 class Verdura : public baseClass
 {
 public:
-    float calcularValorEstoque() override;
-
+    float calcularValorEstoque() const override;
     Verdura(string newName, float newPrice, int newQuantity);
-}
+};
+
+#endif
