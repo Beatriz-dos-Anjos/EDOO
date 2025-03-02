@@ -1,6 +1,6 @@
 #include "fruitClass.h"
 
-float Fruit::calcularValorEstoque() const
+float Fruit::calcularValorEstoque() const //método virtual
 {
     return getPrice() * getQuantity();
 }

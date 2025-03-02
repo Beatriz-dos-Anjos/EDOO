@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class baseClass
+class baseClass  //classe abstrata por ter um  método virtual puro
 {
 private:
     string name;

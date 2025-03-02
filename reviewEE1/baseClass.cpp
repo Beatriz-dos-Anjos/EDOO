@@ -31,4 +31,4 @@ void baseClass::setQuantity(int newQuantity)
 }
 
 baseClass::baseClass(string newName, float newPrice, int newQuantity)
-    : name(newName), price(newPrice), quantity(newQuantity) {}
+    : name(newName), price(newPrice), quantity(newQuantity) {} // até a classe base tem que ter lista de inicialização

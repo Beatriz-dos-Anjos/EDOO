@@ -74,7 +74,7 @@ int main()
     cout << "\nValor total do estoque de Fruta:\n";
     for (auto &produto : frutas)
     {
-        double valor = produto->calcularValorEstoque();
+        double valor = produto->calcularValorEstoque();  //parte importante de ponteiros, herança e polimorfismo.
         cout << produto->getName() << ": R$" << valor << endl;
         totalFruit += valor;
     }

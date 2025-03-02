@@ -1,25 +1,25 @@
 #include "figuraGeometrica.h"
 
-
 // no construtor já tem que fazer a lista de inicialização
 FiguraGeometrica::FiguraGeometrica(int valueX, int valueY) : x(valueX), y(valueY) {}
+FiguraGeometrica::~FiguraGeometrica() {}
 
-FiguraGeometrica::setX(int valueX)
+void FiguraGeometrica::setX(int valueX)
 {
     x = valueX;
 }
 
-FiguraGeometrica::setY(int valueY)
+void FiguraGeometrica::setY(int valueY)
 {
     y = valueY;
 }
 
-FiguraGeometrica::getX() const
+int FiguraGeometrica::getX() const
 {
     return x;
 }
 
-FiguraGeometrica::getY() const
+int FiguraGeometrica::getY() const
 {
     return y;
 }

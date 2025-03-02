@@ -1,5 +1,5 @@
-#ifndef _FIGURA_
-#define _FIGURA_
+#ifndef FIGURA_GEOMETRICA_H
+#define FIGURA_GEOMETRICA_H
 
 class FiguraGeometrica
 {
@@ -9,9 +9,8 @@ private:
 public:
     // getters, setters, destructors and constructors
 
-    
-    FiguraGeometrica(int valueX, int valueY);
-    ~FiguraGeometrica();
+    FiguraGeometrica(int valueX, int valueY); ///constructor com parâmetros
+    virtual ~FiguraGeometrica(); //já que temos um método virtual, o destrutor tem que ser virtual por contaa da alocação dinâmica na memória
 
     int getX() const;
     int getY() const;
@@ -21,5 +20,6 @@ public:
 
     // método puro virtual
 
-    virtual int area() = 0;
-}
+    virtual int area() const = 0;
+};
+#endif

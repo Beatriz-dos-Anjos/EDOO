@@ -1,7 +1,7 @@
 #include "triangulo.h"
 
 Triangulo::Triangulo(int valueX, int valueY, int vBase, int vAltura) : FiguraGeometrica(valueX, valueY), base(vBase), altura(vAltura) {}
-
+Triangulo::~Triangulo() {}
 
 void Triangulo::setBase(int vBase)
 {

@@ -10,7 +10,7 @@ private:
     bool sunRoof;
 
 public:
-    // construtor
+    // construtor, tem que colocar as variáveis até da classe mãe tbm
     PassCar(const string &tp, bool sr, int n, const string &p);
 
     // getters and setters
@@ -20,5 +20,5 @@ public:
     string getType() const;
     bool getSr() const;
 
-    string display() const override; // sobrescrevendo
+    string display() const override; // sobrescrevendo, método virtual
 };
