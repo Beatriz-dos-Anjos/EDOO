@@ -33,7 +33,9 @@ private:
 public:
     LinkedList();            // construtor
     void push_back(int val); // adiciona ao final
-    void print();            // imprime os valores
+    void remove(int val);
+    void changePositions(Node *first, Node *second);
+    void print(); // imprime os valores
 };
 //// altura de um nó numa lista encadeada
 int height(Node *currentNode)
@@ -82,4 +84,110 @@ Node *copyLinkedList(Node *headerOriginal)
         currentNodeOriginal = currentNodeOriginal->next;
     }
     return headerCopy;
+}
+
+// inserir no final da lista encadeada
+void LinkedList::push_back(int val)
+{
+    Node *newNode = new Node(); // criacao de um novo nó
+    newNode->value = val;       // esse novo nó recebe o valor passando como parametro
+    if (head == nullptr)
+    {
+        head = newNode; // se a lista estiver vazia, o novo nó é o primeiro
+    }
+    else
+    {
+        Node *currentNode = head; // faz um nó temporario que vai percorrer toda a lista
+        while (currentNode->next != nullptr)
+        {
+            currentNode = currentNode->next; // segue o percurso para o próximo node
+        }
+        currentNode->next = newNode; // conecta o novo nó ao último nó da lista
+    }
+}
+#include <stdexcept> // necessário para std::runtime_error
+
+void LinkedList::remove(int val)
+{
+    // Caso especial: o valor está no primeiro nó (head)
+    if (head->value == val)
+    {
+        Node *temp = head; // nó temporario que guarda o valor de head, para que head passe para o próximo e o valor inicial seja deletado
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    Node *currentNode = head->next;
+    Node *previousNode = head;
+
+    // Percorre até encontrar o valor ou chegar ao fim
+    while (currentNode != nullptr && currentNode->value != val)
+    {
+        previousNode = currentNode;
+        currentNode = currentNode->next;
+    }
+
+    if (currentNode == nullptr)
+    {
+        throw std::runtime_error("Valor não encontrado na lista.");
+    }
+
+    // Remove o nó e realoca os ponteiros
+    previousNode->next = currentNode->next;
+    delete currentNode;
+}
+// funcao para trocar de posicao dois elementos de uma mesma lista encadeada (nós)
+
+void LinkedList::changePositions(Node *first, Node *second)
+{
+    if (first == second)
+    {
+        // Se os dois nós forem o mesmo, não há nada a fazer
+        return;
+    }
+
+    // Ponteiros para armazenar os nós anteriores a 'first' e 'second'
+    Node *prevFirst = nullptr;
+    Node *prevSecond = nullptr;
+    Node *current = head;
+
+    // Percorre a lista para encontrar os nós anteriores a 'first' e 'second'
+    while (current != nullptr)
+    {
+        if (current->next == first)
+        {
+            prevFirst = current;
+        }
+        if (current->next == second)
+        {
+            prevSecond = current;
+        }
+        current = current->next;
+    }
+
+    // Se algum dos dois que estamos trocando for o head, precisamos atualizar o head pra continuar apontando pro primeiro nó da lista.
+    if (first == head)
+    {
+        head = second;
+    }
+    else if (second == head)
+    {
+        head = first;
+    }
+
+    // Atualiza os ponteiros dos nós anteriores
+    if (prevFirst != nullptr)
+    {
+        prevFirst->next = second;
+    }
+    if (prevSecond != nullptr)
+    {
+        prevSecond->next = first;
+    }
+
+    // Troca os ponteiros 'next' de 'first' e 'second'
+    Node *temp = first->next;
+    first->next = second->next;
+    second->next = temp;
 }
