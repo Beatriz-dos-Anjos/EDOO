@@ -18,7 +18,7 @@ struct HashNode
 class HashTable
 {
 private:
-    HashNode *arr; // Vetor que armazena os elementos da tabela hash
+    HashNode *arr; // Estrutura de array que armazena os elementos da tabela hash
     int capacity;  // Capacidade máxima da tabela (quantidade total de posições)
     int size;      // Quantidade de elementos atualmente armazenados
 
