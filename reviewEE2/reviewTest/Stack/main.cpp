@@ -1,103 +1,111 @@
-
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
-// implementar uma pilha em uma lista encadeada
-class Node
-{
-public:
+
+struct Node {
     int value;
-    Node *nextNode;
-    Node()
-    {
-        value = 0;
-        nextNode = nullptr;
-    }
-}
+    Node *next;
+};
 
-class Stack
-{
+class Stack {
 private:
-    Node *NoTopo;
+    Node *top;
 
 public:
-    Stack();
+    Stack() ;
     ~Stack();
-    bool isEmpty();
-    bool isFull();
-    void push(int item);
+    void push(int value);
     int pop();
-    int length();
+    bool isEmpty() ;
+    int getTopValue();
+    void duplicateTop();
+    void removeAndPush();
+    void clear();
+};
+
+Stack::~Stack() {
+    clear();
+}
+Stack::Stack() {
+    top = nullptr;
+}
+bool Stack::isEmpty() {
+    return top == nullptr;
 }
 
-Stack::Stack()
-{
-    NoTopo = nullptr; // não tem nada!!!!
+void Stack::clear() {
+    while (!isEmpty()) pop();
 }
 
-Stack::~Stack()
-{
-    delete Stack;
+void Stack::push(int value) {
+    Node *newNode = new Node{value, top};
+    top = newNode;
 }
 
-bool Stack::isEmpty()
-{
-    return (NoTopo == nullptr);
+int Stack::pop() {
+    if (isEmpty()) return 0;
+    int value = top->value;
+    Node *temporary = top;
+    top = top->next;
+    delete temporary;
+    return value;
 }
 
-bool Stack::isFull()
-{
-    try
-    {
-        Node *currentNode;
-        currentNode = new Node(); // criação de um novo nó para testar alocacão de memória - se há espaço
-        delete currentNode;
-        return false;
+int Stack::getTopValue() {
+  if (isEmpty()){
+    return -1;
+  } else{
+    return top->value;
+  }
+}
+
+void Stack::duplicateTop() {
+    if (!isEmpty()) push(getTopValue());
+}
+
+void Stack::removeAndPush() {
+    if (top == nullptr || top->next == nullptr)
+        return;
+
+    int top1 = pop();
+    int top2 = pop();
+
+    push(top1 + top2);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+    for (int &v : values) cin >> v;
+
+    Stack stack;
+    string commands;
+    int lastValue = -1;
+
+    for (int i = 0; i < n; i++) {
+        int target = values[i];
+
+        if (lastValue == target) {
+            stack.duplicateTop();
+            commands += "d";
+        } else {
+            stack.clear();
+            commands += "1";
+            stack.push(1);
+
+            while (stack.getTopValue() < target) {
+                commands += "1";
+                stack.push(1);
+                commands += "+";
+                stack.removeAndPush();
+            }
+        }
+
+        lastValue = target;
     }
-    catch ()
-    {
-        return true;
-    }
-}
 
-void Stack::push(int item)
-{
-    if (isFull)
-    {
-        cout << "Full";
-    }
-    Node *NovoNo = new Node();
-    NovoNo->value = item;
-    NovoNo->next = NoTopo;
-    NoTopo = NovoNo;
-}
-
-int Stack::pop()
-{
-    if (isEmpty)
-    {
-        return 0;
-    }
-    else
-    {
-        Node *temporaryNode;              // criação de um nó temporário
-        temporaryNode = NoTopo;           // que aponta para o nó topo
-        int value = temporaryNode->value; // uma nova variável chamada valor, que recebe como valor o valor que o nó temporario guarda
-        NoTopo = NoTopo->next;            // avança o no topo
-        delete temporaryNode;             // deleta o temporário!!!!!!1
-        return value;
-    }
-}
-
-int Stack::length()
-{
-    int num;
-    num = 0;
-    Node *temporary;
-    temporary = NoTopo;
-    while (temporary!= nullptr)
-    {
-        num++;
-        temporary = temporary->nextNode;
-    }
-    return num;
+    cout << commands << endl;
+    return 0;
 }
